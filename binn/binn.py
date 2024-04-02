@@ -5,7 +5,7 @@ import lightning.pytorch as pl
 from torch import nn as nn
 from torch.nn.utils import prune as prune
 
-from binn.network import Network
+from .network import Network
 
 
 class BINN(pl.LightningModule):
