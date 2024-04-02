@@ -5,7 +5,9 @@ from torch.utils.data import DataLoader, TensorDataset
 import lightning.pytorch as pl
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-from binn import BINN, Network, SuperLogger
+from .binn import BINN
+from .network import Network
+from .logger import SuperLogger
 
 
 class BINNClassifier(BaseEstimator, ClassifierMixin):
