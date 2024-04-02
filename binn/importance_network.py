@@ -1,5 +1,5 @@
 from typing import Union
-from binn.plot import subgraph_sankey, complete_sankey
+from .plot import subgraph_sankey, complete_sankey
 import networkx as nx
 import numpy as np
 import pandas as pd
