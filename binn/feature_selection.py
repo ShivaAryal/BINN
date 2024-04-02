@@ -1,6 +1,6 @@
 from sklearn import preprocessing
 from sklearn.model_selection import StratifiedKFold, train_test_split
-from binn import BINN
+from .binn import BINN
 import numpy as np
 import torch
 import pandas as pd
