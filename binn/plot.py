@@ -292,29 +292,30 @@ def complete_sankey(
             other_value = other_df["value"]
 
             layer_df["rank"] = range(len(layer_df.index))
-            layer_df["value"] = layer_df["value"] / layer_df["value"].sum()
-            layer_df["y"] = (
-                0.8
-                * (0.01 + max(layer_df["rank"]) - layer_df["rank"])
-                / (max(layer_df["rank"]))
-                - 0.05
-            )
-            layer_df["x"] = (0.01 + layer) / (len(layers) + 1)
-            other_df = pd.DataFrame(
-                [
+            if not layer_df.empty:
+                layer_df["value"] = layer_df["value"] / layer_df["value"].sum()
+                layer_df["y"] = (
+                    0.8
+                    * (0.01 + max(layer_df["rank"]) - layer_df["rank"])
+                    / (max(layer_df["rank"]))
+                    - 0.05
+                )
+                layer_df["x"] = (0.01 + layer) / (len(layers) + 1)
+                other_df = pd.DataFrame(
                     [
-                        other_id * (layer + 1),
-                        layer,
-                        other_value,
-                        10,
-                        0.9,
-                        (0.01 + layer) / (len(layers) + 1),
-                    ]
-                ],
-                columns=["source_w_other", "source layer", "value", "rank", "y", "x"],
-            )
-
-            final_df = pd.concat([final_df, layer_df, other_df])
+                        [
+                            other_id * (layer + 1),
+                            layer,
+                            other_value,
+                            10,
+                            0.9,
+                            (0.01 + layer) / (len(layers) + 1),
+                        ]
+                    ],
+                    columns=["source_w_other", "source layer", "value", "rank", "y", "x"],
+                )
+    
+                final_df = pd.concat([final_df, layer_df, other_df])
 
         for f in feature_labels:
             if f == root_id:
